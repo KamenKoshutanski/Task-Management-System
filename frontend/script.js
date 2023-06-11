@@ -4,11 +4,11 @@ const myTaskList = document.querySelector('#my-tasks');
 
 const signupButton = document.getElementById('signup-btn');
 const loginButton = document.getElementById('login-btn');
-const signinPopup = document.getElementById('signup-popup');
+const signupPopup = document.getElementById('signup-popup');
 const loginPopup = document.getElementById('login-popup');
 
 signupButton.addEventListener('click', () => {
-    signinPopup.style.display = 'block';
+    signupPopup.style.display = 'block';
 });
 
 loginButton.addEventListener('click', () => {
