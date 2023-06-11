@@ -18,6 +18,11 @@ loginButton.addEventListener('click', () => {
 
 let tasks = [];
 
+if (localStorage.getItem('tasks')) {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+    displayTasks();
+}
+
 function addTask(event) {
     event.preventDefault();
 
@@ -34,7 +39,7 @@ function addTask(event) {
     };
 
     tasks.push(task);
-    
+    saveTasksToLocalStorage();
 
     displayTasks();
 }
@@ -58,7 +63,7 @@ function displayTasks() {
 }
 
 function displayMyTasks() {
-    const currentUser = 'JohnDoe';
+    const currentUser = localStorage.getItem('username');
 
     const myTasks = tasks.filter(task => task.assignedTo === currentUser);
 
@@ -75,6 +80,11 @@ function displayMyTasks() {
         myTaskList.appendChild(taskItem);
     });
 }
+
+function saveTasksToLocalStorage() {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }
+  
 
 taskForm.addEventListener('submit', addTask);
 
