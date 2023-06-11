@@ -57,7 +57,8 @@ footer {
     text-align: center;
 }
 
-.popup {
+#signup-popup,
+#login-popup {
     display: none;
     position: fixed;
     top: 0;
@@ -65,25 +66,21 @@ footer {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
+    z-index: 9999;
 }
 
-.popup form {
-    position: fixed;
+#signup-popup #signup-form,
+#login-popup #login-form {
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    background-color: white;
     padding: 20px;
-    background-color: #fff;
-    border-radius: 5px;
+    text-align: center;
 }
 
-
-.popup h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
-}
-
-.popup.active {
-    display: block;
+#signup-popup,
+#login-popup {
+    margin-top: 10px;
 }

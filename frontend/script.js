@@ -2,6 +2,20 @@ const taskForm = document.querySelector('#add-task');
 const taskList = document.querySelector('#tasks');
 const myTaskList = document.querySelector('#my-tasks');
 
+const signupButton = document.getElementById('signup-btn');
+const loginButton = document.getElementById('login-btn');
+const signinPopup = document.getElementById('signup-popup');
+const loginPopup = document.getElementById('login-popup');
+
+signupButton.addEventListener('click', () => {
+    signinPopup.style.display = 'block';
+});
+
+loginButton.addEventListener('click', () => {
+    loginPopup.style.display = 'block';
+});
+
+
 let tasks = [];
 
 function addTask(event) {
