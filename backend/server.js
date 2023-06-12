@@ -9,7 +9,7 @@ if (cluster.isMaster) {
   }
 } else {
   const app = express();
-  const PORT = process.env.PORT || 3000;
+  const PORT = process.env.PORT || 4041;
 
   app.use(express.static(path.join('frontend')));
 

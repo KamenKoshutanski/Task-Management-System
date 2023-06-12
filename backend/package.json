@@ -1,0 +1,25 @@
+{
+  "name": "task-manager-backend",
+  "version": "1.0.0",
+  "description": "Backend microservice for the TaskManager project",
+  "main": "script.js",
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KamenKoshutanski/Task-Management-System.git"
+  },
+  "author": "KamenKoshutanski",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KamenKoshutanski/Task-Management-System/issues"
+  },
+  "homepage": "https://github.com/KamenKoshutanski/Task-Management-System#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "serve-favicon": "^2.5.0",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
