@@ -1,13 +1,16 @@
 const express = require('express');
 
 const HOST = 'frontend';
-const PORT = 4040;
+const PORT = 3030;
 
 const app = express();
 const http = require('http').createServer(app);
 
+const indexRoute = require('./routes/index');
+
 app.use(express.json());
 app.use(express.static('./'));
+app.use('/', indexRoute);
 
 http.listen(PORT, () => {
     console.log(`\x1b[36m`);

@@ -14,11 +14,11 @@ RUN npm install
 COPY . .
 
 # Expose the port that the app will run on
-EXPOSE 4040
+EXPOSE 3030
 
 # Define a healthcheck that pings the app's endpoint to check if it's running
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s \
-    CMD curl -f http://localhost:4040/ || exit 1
+    CMD curl -f http://localhost:3030/ || exit 1
 
 # Start the app
 CMD ["node", "client.js"]

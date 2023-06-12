@@ -1,23 +1,42 @@
 const express = require('express');
-const path = require('path');
-const cluster = require('cluster');
-const numCPUs = require('os').cpus().length;
+const app = express();
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
 
-if (cluster.isMaster) {
-  for (let i = 0; i < numCPUs; i++) {
-    cluster.fork();
-  }
-} else {
-  const app = express();
-  const PORT = process.env.PORT || 4041;
+const Client = require('./models/client');
+const { getCurTimeColored } = require('./utils/timeUtils');
 
-  app.use(express.static(path.join('frontend')));
+const HOST = 'backend';
+const PORT = 3031;
 
-  app.get('/', (req, res) => {
-    res.sendFile(path.join('frontend', 'index.html'));
-  });
+const clients = [];
+io.on('connection', (socket) => {
+    const client = new Client(socket);
+    clients.push(client);
+});
 
-  app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-  });
-}
+http.listen(PORT, HOST, () => {
+    console.log(`\x1b[36m`);
+    console.log(`    \x1b[36m╭────────────────────────────────────────╮`);
+    console.log(`    \x1b[36m│      \x1b[31m> TaskManager Started <      \x1b[36m│`);
+    console.log(`    \x1b[36m│    \x1b[37m            Backend                 \x1b[36m│`);
+    console.log(`    \x1b[36m│    \x1b[37m                                    \x1b[36m│`);
+    console.log(`    \x1b[36m│    \x1b[37m          ${HOST}:${PORT}              \x1b[36m│`);
+    console.log(`    \x1b[36m╰────────────────────────────────────────╯`);
+    console.log(`\x1b[0m`);
+}).on('error', (error) => {
+    console.error(getCurTimeColored(), '\t\x1b[31mERROR\x1b[37m\t\tFailed to start server:', error.message);
+    process.exit(1);
+});
+
+process.on('SIGINT', () => {
+    console.log('Received SIGINT signal. Gracefully shutting down...');
+    process.exit(0);
+});
+
+process.on('SIGTERM', () => {
+    console.log('Received SIGTERM signal. Gracefully shutting down...');
+    process.exit(0);
+});
+
+module.exports.clients = clients;

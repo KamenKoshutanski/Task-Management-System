@@ -1,9 +1,12 @@
 {
   "name": "task-manager-frontend",
   "version": "1.0.0",
-  "description": "Frontend microservice for the TaskManager project",
-  "main": "script.js",
-
+  "description": "Frontend microservice for the TaskManaging project",
+  "main": "client.js",
+  "scripts": {
+    "test": "nodemon client.js",
+    "start": "node client.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/KamenKoshutanski/Task-Management-System.git"
